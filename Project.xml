@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildster directory="../build">
+	<project directory="../Project">
+		<dependencies>
+		</dependencies>
+		<targets>
+			<target type="library">
+				<label>yltss</label>
+				<definitions></definitions>
+				<links>
+					<if_check id="BUILDSTER_OS" check="Windows">
+						<link>iphlpapi</link>
+						<link>psapi</link>
+						<link>userenv</link>
+						<link>gdi32</link>
+						<link>crypt32</link>
+						<link>ws2_32</link>
+					</if_check>
+				</links>
+				<imports></imports>
+				<exports>
+					<export type="headers">
+						<key>YLTSS_INCLUDE_PATH</key>
+						<value><install></install>/include</value>
+					</export>
+					<export type="libraries">
+						<key>YLTSS_LIBRARIES</key>
+						<value><install></install>/lib</value>
+					</export>
+				</exports>
+			</target>
+			<target type="executable">
+				<label>example</label>
+				<definitions></definitions>
+				<links>
+					<link>yltss</link>
+					<if_check id="BUILDSTER_OS" check="Windows">
+						<link>setupapi</link>
+						<link>iphlpapi</link>
+						<link>psapi</link>
+						<link>userenv</link>
+						<link>gdi32</link>
+						<link>crypt32</link>
+						<link>ws2_32</link>
+					</if_check>
+				</links>
+				<imports>
+					<import>yltss</import>
+				</imports>
+			</target>
+		</targets>
+	</project>
+</buildster>
